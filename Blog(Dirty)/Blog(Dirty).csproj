@@ -10,7 +10,10 @@
 
   <ItemGroup>
     <Compile Remove="EFCoreAccess.cs" />
-    <Compile Remove="UserRepository.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
   </ItemGroup>
 
 </Project>
