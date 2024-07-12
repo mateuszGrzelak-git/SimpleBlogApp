@@ -1,76 +1,79 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
-using System.Data;
 
 namespace Blog_Dirty_
 {
-    internal class UserManager
+    public class UserManager
     {
-        private static SqlConnection connection = new SqlConnection();
-        private static string databaseSource = "Data Source=(local);Initial Catalog=UserRepository;Integrated Security=True";
-        public void createDatabase()
+        private UserRepository _repository;
+        public UserManager()
         {
-            connection.ConnectionString = databaseSource;
-            connection.Open();
+            _repository = new UserRepository();
+            _repository.createDatabase();
+        }
+        ~UserManager()
+        {
+            _repository.closeDatabase();
         }
 
-        public void closeDatabase()
+        public bool isUsernameFree(string username)
         {
-            connection.Close();
-        }
-
-        private static SqlDataAdapter adapter = new SqlDataAdapter();
-        public int executeDataAdapter(DataTable tblName, string databaseCommands)
-        {
-            if (connection.State == 0)
+            try
             {
-                createDatabase();
+                SqlCommand checkIfFree = new SqlCommand("select count(*) from users where username= @username"); //connection at end
+                checkIfFree.Parameters.AddWithValue("username", username);
+
+                _repository.executeQuery(checkIfFree);
+
+                object result = checkIfFree.ExecuteScalar();
+                if ((int)result == 0)
+                {
+                    return true;
+                }
+                return false;
             }
+            catch(Exception ex)
+            {
+                return true;
+            }
+        }
+        public void addUser(string username, string password)
+        {
+            if (!isUsernameFree(username))
+            {
+                throw new Exception("Username already exists");
+            }
+            else
+            {
+                SqlCommand addToDatabase = new SqlCommand("insert into Users(username, password) values(@username, @password)");
 
-            adapter.SelectCommand.CommandText = databaseCommands;
-            adapter.SelectCommand.CommandType = CommandType.Text;
-            SqlCommandBuilder DbCommandBuilder = new SqlCommandBuilder(adapter);
+                addToDatabase.Parameters.AddWithValue("username", username);
+                addToDatabase.Parameters.AddWithValue("password", password);
 
-            string insert = DbCommandBuilder.GetInsertCommand().CommandText.ToString();
-            string update = DbCommandBuilder.GetUpdateCommand().CommandText.ToString();
-            string delete = DbCommandBuilder.GetDeleteCommand().CommandText.ToString();
-
-            return adapter.Update(tblName);
+                _repository.executeQuery(addToDatabase);
+            }
         }
 
-        private static SqlCommand command = new SqlCommand();
-        public void readDataFromCommands(string query, DataTable tblName)
+        public void removeUser(User user)
         {
-            command.Connection = connection;
-            command.CommandText = query;
-            command.CommandType = CommandType.Text;
+            string username = user.UserName;
 
-            adapter = new SqlDataAdapter(command);
-            adapter.Fill(tblName);
-        }
+            if (isUsernameFree(username))
+            {
+                throw new Exception("Username not exists");
+            }
+            else
+            {
+                SqlCommand deleteFromDatabase = new SqlCommand("DELETE from Users Where UserName = '" + username + "'");
 
-        private static SqlDataReader readDataFromStream(string query)
-        {
-            SqlDataReader reader;
+                deleteFromDatabase.Parameters.AddWithValue("username", username);
 
-            command.Connection = connection;
-            command.CommandText = query;
-            command.CommandType = CommandType.Text;
-
-            reader = command.ExecuteReader();
-            return reader;
-        }
-
-        public int executeQuery(SqlCommand dbCommand)
-        {
-            dbCommand.Connection = connection;
-            dbCommand.CommandType= CommandType.Text;
-
-            return dbCommand.ExecuteNonQuery();
+                _repository.executeQuery(deleteFromDatabase);
+            }
         }
     }
 }
