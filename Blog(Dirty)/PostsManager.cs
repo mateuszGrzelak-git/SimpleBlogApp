@@ -8,11 +8,11 @@ using System.Data;
 
 namespace Blog_Dirty_
 {
-    sealed class PostsManager
+    public class PostsManager
     {
         private PostsRepository _repository;
 
-        PostsManager()
+        public PostsManager()
         {
             _repository = new PostsRepository();
             _repository.createDatabase();
@@ -26,7 +26,7 @@ namespace Blog_Dirty_
         {
             try
             {
-                SqlCommand checkIfExists = new SqlCommand("select count(*) from users where PostName= @postName"); //connection at end
+                SqlCommand checkIfExists = new SqlCommand("select count(*) from posts where PostName= @postName"); //connection at end
                 checkIfExists.Parameters.AddWithValue("postName", postName);
 
                 _repository.executeQuery(checkIfExists);
@@ -47,7 +47,7 @@ namespace Blog_Dirty_
         {
             string username = user.UserName;
 
-            SqlCommand addToDatabase = new SqlCommand("insert into Users(username, postName, postData) values(@username, @postName, @postData)");
+            SqlCommand addToDatabase = new SqlCommand("insert into posts(username, postName, postData) values(@username, @postName, @postData)");
 
             addToDatabase.Parameters.AddWithValue("username", username);
             addToDatabase.Parameters.AddWithValue("postName", postName);
@@ -65,9 +65,11 @@ namespace Blog_Dirty_
             }
             else
             {
-                SqlCommand deleteFromDatabase = new SqlCommand("DELETE from Posts Where PostName = '" + postName + "'");
+                string username = posts.username;
+                SqlCommand deleteFromDatabase = new SqlCommand("DELETE from Posts Where PostName = '" + postName + "'" + "AND username = " + "'username'");
 
                 deleteFromDatabase.Parameters.AddWithValue("PostName", postName);
+                deleteFromDatabase.Parameters.AddWithValue("username", username);
 
                 _repository.executeQuery(deleteFromDatabase);
             }
@@ -76,9 +78,9 @@ namespace Blog_Dirty_
         public void searchForUserPosts(string username)
         {
             string query = "SELECT * from Posts Where username = '" + username + "'";
-            SqlCommand searchInDatabase = new SqlCommand("SELECT * from Posts Where username = '" + username + "'");
+            //SqlCommand searchInDatabase = new SqlCommand("SELECT * from Posts Where username = '" + username + "'");
 
-            searchInDatabase.Parameters.AddWithValue("username", username);
+            //searchInDatabase.Parameters.AddWithValue("username", username);
 
             DataTable dataTable = new DataTable();
 

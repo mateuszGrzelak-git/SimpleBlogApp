@@ -11,7 +11,7 @@ namespace Blog_Dirty_
     public class PostsRepository
     {
         private static SqlConnection connection = new SqlConnection();
-        private static string databaseSource = "Data Source=(local)\\POSTSDATABASE;Initial Catalog=UserRepository;Integrated Security=True";
+        private static string databaseSource = "Data Source=(local)\\POSTSDATABASE;Initial Catalog=PostsRepository;Integrated Security=True";
         public void createDatabase()
         {
             connection.ConnectionString = databaseSource;

@@ -9,7 +9,9 @@ using System.Threading.Tasks;
 
 namespace Blog_Dirty_
 {
-    
+    /// <summary>
+    /// Class <c>BlogInterface</c> creates a user interaction with program
+    /// </summary>
     sealed class BlogInterface
     {
         public BlogInterface()
@@ -17,12 +19,17 @@ namespace Blog_Dirty_
             
         }
 
+        /// <summary>
+        /// This method changes text color to green and writes W: before writing
+        /// </summary>
         private void writerMode()
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("W: ");
         }
-
+        /// <summary>
+        /// This method changes text color to red and writes R: before writing
+        /// </summary>
         private void readerMode()
         {
             Console.ForegroundColor = ConsoleColor.Red;
@@ -33,7 +40,9 @@ namespace Blog_Dirty_
         {
             Console.ForegroundColor = ConsoleColor.White;
         }
-
+        /// <summary>
+        /// This method writes instructions for writer and saves content to database
+        /// </summary>
         public void writeBlogPost()
         {
 
@@ -64,7 +73,12 @@ namespace Blog_Dirty_
             }
             defaultMode();
         }
-
+        /// <summary>
+        /// Outputs blog post
+        /// </summary>
+        /// <returns>
+        /// string with usernames and posts which their owners wrote
+        /// </returns>
         public void readBlogPost()
         {
             readerMode();
@@ -73,7 +87,9 @@ namespace Blog_Dirty_
 
             defaultMode();
         }
-
+        /// <summary>
+        /// This method welcome our users
+        /// </summary>
         public void menu()
         {
             ConsoleKeyInfo option;
