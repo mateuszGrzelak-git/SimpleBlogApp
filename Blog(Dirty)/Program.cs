@@ -20,7 +20,7 @@ namespace Blog_Dirty_
             userManager.removeUser(user);
             Console.WriteLine("User removed successfully");
 
-            BlogInterface blogInterface = new BlogInterface();
+            BlogInterface blogInterface = new BlogInterface(user);
 
             blogInterface.menu();
             

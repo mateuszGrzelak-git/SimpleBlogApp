@@ -63,5 +63,33 @@ namespace Blog.Tests
 
             Assert.IsFalse(postsManager.isPostExists(postName));
         }
+
+        [Test]
+        public void searchForUserPostsTest()
+        {
+            createManager();
+
+            User user = new User(username, password);
+
+            Posts posts = new Posts(postName, postData);
+
+            postsManager.addPost(user, postName, postData);
+
+            Assert.AreEqual(postsManager.searchForUserPosts(username).Length,1);
+        }
+
+        [Test]
+        public void searchForSpecifiedPostsTest()
+        {
+            createManager();
+
+            User user = new User(username, password);
+
+            Posts posts = new Posts(postName, postData);
+
+            postsManager.addPost(user, postName, postData);
+
+            Assert.AreEqual(postsManager.searchForSpecifiedPost(username, postName).Length,1);
+        }
     }
 }
