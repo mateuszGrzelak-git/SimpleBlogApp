@@ -116,7 +116,8 @@ namespace Blog_Dirty_
             {
                 while (reader.Read())
                 {
-                    string postData = reader[3].ToString();
+                    string postData = reader[2].ToString(); 
+                    postData += reader[3].ToString();
                     result.Add(postData);
                 }
             }

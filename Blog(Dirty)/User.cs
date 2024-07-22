@@ -15,6 +15,26 @@ namespace Blog_Dirty_
             UserName = username;
             Password = password;
         }
+
+        /// <summary>
+        /// stores a password of the user
+        /// </summary>
+        public string Password
+        {
+            get
+            {
+                return DehashPassword(Password, new string[] { salt.ToString() });
+            }
+            set
+            {
+                value = HashPassword(value);
+            }
+        }
+        /// <summary>
+        /// sotres a username of the user
+        /// </summary>
+        public string UserName { get; set; }
+
         /// <summary>
         /// returns salt for password hashing
         /// </summary>
@@ -61,6 +81,31 @@ namespace Blog_Dirty_
         }
 
         /// <summary>
+        /// dehashes password
+        /// </summary>
+        /// <param name="hashedPasswordWithSaltBase64">hashed password</param>
+        /// <param name="dictionary">original password or array of possible passwords</param>
+        /// <returns></returns>
+        public string DehashPassword(string hashedPasswordWithSaltBase64, string[] dictionary)
+        {
+            byte[] hashedPasswordWithSalt = Convert.FromBase64String(hashedPasswordWithSaltBase64);
+
+            // Extract the hashed password part (assuming the hash is SHA-256, so 32 bytes)
+            byte[] hashedPassword = new byte[32];
+            Buffer.BlockCopy(hashedPasswordWithSalt, salt.Length, hashedPassword, 0, hashedPassword.Length);
+
+            foreach (var password in dictionary)
+            {
+                if (CheckPassword(password, hashedPassword))
+                {
+                    return password;
+                }
+            }
+
+            return null; // Return null if no match found
+        }
+
+        /// <summary>
         /// check if passwords are correct
         /// </summary>
         /// <param name="password">password that user typed</param>
@@ -92,48 +137,5 @@ namespace Blog_Dirty_
                 return true;
             }
         }
-
-        /// <summary>
-        /// dehashes password
-        /// </summary>
-        /// <param name="hashedPasswordWithSaltBase64">hashed password</param>
-        /// <param name="dictionary">original password or array of possible passwords</param>
-        /// <returns></returns>
-        public string DehashPassword(string hashedPasswordWithSaltBase64, string[] dictionary)
-        {
-            byte[] hashedPasswordWithSalt = Convert.FromBase64String(hashedPasswordWithSaltBase64);
-
-            // Extract the hashed password part (assuming the hash is SHA-256, so 32 bytes)
-            byte[] hashedPassword = new byte[32];
-            Buffer.BlockCopy(hashedPasswordWithSalt, salt.Length, hashedPassword, 0, hashedPassword.Length);
-
-            foreach (var password in dictionary)
-            {
-                if (CheckPassword(password, hashedPassword))
-                {
-                    return password;
-                }
-            }
-
-            return null; // Return null if no match found
-        }
-        /// <summary>
-        /// stores a password of the user
-        /// </summary>
-        public string Password
-        {
-            get
-            {
-                return DehashPassword(Password, new string[] { salt.ToString() });
-            }
-            set
-            {
-                value = HashPassword(value);
-            }
-        }
-        /// <summary>
-        /// sotres a username of the user
-        /// </summary>
-        public string UserName { get; set; }
     }
 }
