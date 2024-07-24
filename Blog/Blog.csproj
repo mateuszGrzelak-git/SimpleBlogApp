@@ -6,4 +6,21 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Contracts\Responses\GetAllUsersResponse.cs" />
+    <Compile Remove="Contracts\Responses\UserResponse.cs" />
+    <Compile Remove="Database\DatabaseInitializer.cs" />
+    <Compile Remove="Database\DbConnectionFactory.cs" />
+    <Compile Remove="Repositories\IUserRepository.cs" />
+    <Compile Remove="Repositories\PostRepository.cs" />
+    <Compile Remove="Repositories\UserRepository.cs" />
+    <Compile Remove="Services\IUserService.cs" />
+    <Compile Remove="Services\PostService.cs" />
+    <Compile Remove="Services\UserService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Database\" />
+  </ItemGroup>
+
 </Project>
