@@ -14,10 +14,13 @@ namespace Blog_Dirty_
         }
         static void Main(string[] args)
         {
-            initDatabases("Data Source=(local)\\POSTSDATABASE;Initial Catalog=PostsRepository;Integrated Security=True");
-            initDatabases("Data Source=(local)\\USERDATABASE;Initial Catalog=UserRepository;Integrated Security=True");
+            //initDatabases("Data Source=(local)\\POSTSDATABASE;Initial Catalog=PostsRepository;Integrated Security=True");
+            //initDatabases("Data Source=(local)\\USERDATABASE;Initial Catalog=UserRepository;Integrated Security=True");
 
-
+            var databaseInitializer2 = new DatabaseInitializer2();
+            databaseInitializer2.Init();
+            
+            
             Console.Write("Write a username: ");
             string username = Console.ReadLine();
             Console.Write("Write a password: ");
