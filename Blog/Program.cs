@@ -1,3 +1,8 @@
+using Blog.Database;
+
+/*DatabaseTest databaseTest = new DatabaseTest();
+databaseTest.isDatabaseExists("");*/
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

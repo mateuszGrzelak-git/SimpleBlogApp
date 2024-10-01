@@ -15,7 +15,7 @@ namespace Blog_Dirty_
     {
         public UserRepository() : base("Data Source=(local)\\USERDATABASE;Initial Catalog=UserRepository;Integrated Security=True")
         {
-
+            
         }
     }
 }
