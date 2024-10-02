@@ -20,6 +20,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\js\BlogPostHandler.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\js\BlogPostHandler.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\js\BlogPostHandler.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
   </ItemGroup>
 
