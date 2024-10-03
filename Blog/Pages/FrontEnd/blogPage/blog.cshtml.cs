@@ -15,7 +15,7 @@ namespace Blog.FrontEnd.blogPage
         {
             string blogData = Request.Form["blogContainment"];
             DatabaseManagement databaseManagement = new DatabaseManagement("");
-            databaseManagement.addValue();
+            //databaseManagement.addValue();
         }
     }
 }

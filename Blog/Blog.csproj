@@ -7,8 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Contracts\Responses\GetAllUsersResponse.cs" />
-    <Compile Remove="Contracts\Responses\UserResponse.cs" />
+    <Compile Remove="Contracts\**" />
+    <Content Remove="Contracts\**" />
+    <EmbeddedResource Remove="Contracts\**" />
+    <None Remove="Contracts\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Database\DatabaseInitializer.cs" />
     <Compile Remove="Database\DbConnectionFactory.cs" />
     <Compile Remove="Repositories\IUserRepository.cs" />
@@ -21,14 +26,17 @@
 
   <ItemGroup>
     <Content Remove="wwwroot\js\BlogPostHandler.js" />
+    <Content Remove="wwwroot\js\LoginRedirect.js" />
   </ItemGroup>
 
   <ItemGroup>
     <_ContentIncludedByDefault Remove="wwwroot\js\BlogPostHandler.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\LoginRedirect.js" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="wwwroot\js\BlogPostHandler.js" />
+    <None Include="wwwroot\js\LoginRedirect.js" />
   </ItemGroup>
 
   <ItemGroup>

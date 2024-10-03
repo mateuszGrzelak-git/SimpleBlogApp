@@ -1,7 +1,9 @@
 using Blog.Database;
 
-/*DatabaseTest databaseTest = new DatabaseTest();
-databaseTest.isDatabaseExists("");*/
+//string connectionString = "Data Source=(local)\\POSTSDATABASE;Initial Catalog=OnlinePosts;Integrated Security=True";
+//DatabaseTest databaseTest = new DatabaseTest();
+//databaseTest.isDatabaseExists(connectionString);
+//string connectionString = "Data Source=(local)\\POSTSDATABASE;Initial Catalog=OnlinePosts;Integrated Security=True"
 
 var builder = WebApplication.CreateBuilder(args);
 
