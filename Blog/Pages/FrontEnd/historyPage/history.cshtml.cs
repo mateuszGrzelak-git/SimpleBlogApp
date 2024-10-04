@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Blog.Database;
 
 namespace Blog.Pages.FrontEnd.historyPage
 {
@@ -7,6 +8,9 @@ namespace Blog.Pages.FrontEnd.historyPage
     {
         public void OnGet()
         {
+            DatabaseManagement databaseManagement = new DatabaseManagement("");
+
+            //databaseManagement.getValue();
         }
     }
 }
