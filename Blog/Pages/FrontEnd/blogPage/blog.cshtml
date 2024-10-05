@@ -1,8 +1,11 @@
 ﻿@page
 @model Blog.FrontEnd.blogPage.blogModel
-@{
-    <input type="text" id="blogContainment" />
-    <input type="submit" id="submitButton" onclick="Submit">
-    <div id="moreBlogs"></div>
-    <script src="~/js/BlogPostHandler.js"></script>
-}
+
+<form method="post">
+    <input type="text" id="blogContainment" name="BlogData" />
+    <input type="submit" id="submitButton" value="Submit" />
+</form>
+
+@* <div id="moreBlogs"></div> *@
+
+@* <script src="~/js/BlogPostHandler.js"></script> *@

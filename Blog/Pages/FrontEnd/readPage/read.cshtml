@@ -1,0 +1,38 @@
+﻿@page
+@model Blog.Pages.FrontEnd.readPage.ReadModel
+@{
+    ViewData["Title"] = "Read Page";
+}
+
+<h1>Search For Blog History</h1>
+
+<form method="post">
+    <div>
+        <label for="Input">Search Blogs:</label>
+        <input type="text" asp-for="Input" id="Input" />
+        <span asp-validation-for="Input" class="text-danger"></span>
+    </div>
+    <input type="submit" value="Search" />
+</form>
+
+<div>
+    @if (Model.Blogs != null && Model.Blogs.Count > 0)
+    {
+        <ul>
+            @foreach (var blog in Model.Blogs)
+            {
+                <li>@blog</li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>No blog history available.</p>
+    }
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,8 +1,10 @@
 ﻿@page
 @model Blog.FrontEnd.loginPage.loginModel
 @{
-    <input type="text" id="login"/>
-    <input type="text" id="password"/>
+<form method="post">
+    <input type="text" id="login" name="Username"/>
+    <input type="text" id="password" name="Password"/>
     <input type="submit" id="btnSubmit" onclick="clickHandlerInBrowser()" />
     <script src="~/js/LoginRedirect.js"></script>
+</form>
 }

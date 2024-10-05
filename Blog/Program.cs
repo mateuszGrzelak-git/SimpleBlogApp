@@ -1,8 +1,9 @@
 using Blog.Database;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
-//string connectionString = "Data Source=(local)\\POSTSDATABASE;Initial Catalog=OnlinePosts;Integrated Security=True";
-//DatabaseTest databaseTest = new DatabaseTest();
-//databaseTest.isDatabaseExists(connectionString);
+string connectionString = "Data Source=(local)\\POSTSDATABASE;Initial Catalog=PostsRepository;Integrated Security=True;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True;encrypt=false";
+DatabaseTest databaseTest = new DatabaseTest();
+databaseTest.isDatabaseExists(connectionString);
 //string connectionString = "Data Source=(local)\\POSTSDATABASE;Initial Catalog=OnlinePosts;Integrated Security=True"
 
 var builder = WebApplication.CreateBuilder(args);

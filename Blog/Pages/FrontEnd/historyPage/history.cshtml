@@ -1,4 +1,43 @@
 ﻿@page
-@model Blog.Pages.FrontEnd.historyPage.historyModel
+@model Blog.Pages.FrontEnd.historyPage.HistoryModel
 @{
+    ViewData["Title"] = "History Page";
 }
+
+<h1>Users</h1>
+<div>
+    @if (Model.Users != null && Model.Users.Count > 0)
+    {
+        <ul>
+            @foreach (var user in Model.Users)
+            {
+                <li>@user</li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>No user history available.</p>
+    }
+</div>
+
+<h1>Blogs</h1>
+<div>
+    @if (Model.Blogs != null && Model.Blogs.Count > 0)
+    {
+        <ul>
+            @foreach (var blog in Model.Blogs)
+            {
+                <li>@blog</li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>No blog history available.</p>
+    }
+</div>
+
+<form method="post">
+    <input type="submit" id="submitButton" value="Get History" />
+</form>

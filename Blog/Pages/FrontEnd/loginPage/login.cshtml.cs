@@ -6,16 +6,28 @@ namespace Blog.FrontEnd.loginPage
 {
     public class loginModel : PageModel
     {
+        [BindProperty]
+        public string Username { get; set; }
+        [BindProperty]
+        public string Password { get; set; }
         public void OnGet()
         {
         }
 
-        protected void Submit(object sender, EventArgs e)
+        public IActionResult OnPost()
         {
-            string login = Request.Form["login"];
-            string password = Request.Form["password"];
-            DatabaseManagement databaseManagement = new DatabaseManagement("");
-            //databaseManagement.addValue();
+            if(!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            DatabaseManagement databaseManagement = new DatabaseManagement("Data Source=(local)\\POSTSDATABASE;Initial Catalog=PostsRepository;Integrated Security=True;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True;encrypt=false");
+
+            Console.WriteLine(Username);
+            Console.WriteLine(Password);
+            databaseManagement.addValue(Username, Password);
+
+            return RedirectToPage("/FrontEnd/blogPage/blog"); // lub inna akcja po zapisie danych
         }
     }
 }
