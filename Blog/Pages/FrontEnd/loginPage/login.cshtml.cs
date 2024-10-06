@@ -18,7 +18,7 @@ namespace Blog.FrontEnd.loginPage
         {
             if(!ModelState.IsValid)
             {
-                return Page();
+                return RedirectToPage("/FrontEnd/errorPage/error");
             }
 
             DatabaseManagement databaseManagement = new DatabaseManagement("Data Source=(local)\\POSTSDATABASE;Initial Catalog=PostsRepository;Integrated Security=True;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True;encrypt=false");

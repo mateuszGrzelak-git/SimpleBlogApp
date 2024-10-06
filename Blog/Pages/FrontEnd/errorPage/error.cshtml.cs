@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Blog.Pages.FrontEnd.errorPage
 {
-    public class errrorModel : PageModel
+    public class errorModel : PageModel
     {
         public void OnGet()
         {

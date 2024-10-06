@@ -33,7 +33,7 @@ namespace Blog.FrontEnd.blogPage
             {
                 Console.WriteLine("Id Equal 0");
                 // Obs³u¿ brak wpisów w tabeli Users (np. przekierowanie lub komunikat o b³êdzie)
-                return RedirectToPage("/FrontEnd/homePage/home");
+                return RedirectToPage("/FrontEnd/errorPage/error");
             }
 
             string author = databaseManagement.getValue(lastId);
@@ -41,7 +41,7 @@ namespace Blog.FrontEnd.blogPage
             if (string.IsNullOrEmpty(author))
             {
                 Console.WriteLine("Author empty");
-                return RedirectToPage("/FrontEnd/homePage/home");
+                return RedirectToPage("/FrontEnd/errorPage/error");
             }
             else
             {
