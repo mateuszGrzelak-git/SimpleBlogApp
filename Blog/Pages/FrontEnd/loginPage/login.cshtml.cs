@@ -21,7 +21,7 @@ namespace Blog.FrontEnd.loginPage
                 return RedirectToPage("/FrontEnd/errorPage/error");
             }
 
-            DatabaseManagement databaseManagement = new DatabaseManagement("Data Source=(local)\\POSTSDATABASE;Initial Catalog=PostsRepository;Integrated Security=True;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True;encrypt=false");
+            DatabaseManagement databaseManagement = new DatabaseManagement("Data Source=localhost,1433;Initial Catalog=PostsRepository;User ID=sa;Password=s3cret-Ninja;MultipleActiveResultSets=true;TrustServerCertificate=True;Encrypt=False");
 
             Console.WriteLine(Username);
             Console.WriteLine(Password);
