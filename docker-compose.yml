@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  sqlserver:
+    build:
+      context: .
+      dockerfile: Dockerfile.sql
+    environment:
+      MSSQL_SA_PASSWORD: "YourStrong@Passw0rd"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    networks:
+      - my_network
+
+  blogapp:
+    build:
+      context: .
+      dockerfile: Blog/Dockerfile
+    environment:
+      ConnectionStrings__DefaultConnection: "Server=sqlserver;Database=BlogDB;User Id=sa;Password=YourStrong@Passw0rd;"
+    ports:
+      - "8080:80"
+    depends_on:
+      - sqlserver
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
+
