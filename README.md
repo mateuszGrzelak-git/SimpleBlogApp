@@ -1,5 +1,17 @@
 # SimpleBlogApp
 
+There're 2 options to build
+
+1. Docker
+2. Mannual
+
+# Docker (recommended)
+
+Just use project's docker script <br />
+How to use: https://docs.docker.com/reference/cli/docker/compose/up/
+
+# Mannual
+
 To build program create 2 SQL Databases in: https://www.microsoft.com/en-us/download/details.aspx?id=42299 <br />
 and config sql server with: 
 https://aka.ms/ssmsfullsetup <br />
@@ -26,5 +38,3 @@ In UserDatabase create table named Users with 3 columns: <br />
 - Password <br /><br />
 
 change ID with instructions above<br /><br />
-
-In the future there will be installation script to automate setup<br />
