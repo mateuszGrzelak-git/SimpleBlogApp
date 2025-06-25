@@ -12,9 +12,18 @@ How to use: https://docs.docker.com/reference/cli/docker/compose/up/
 
 # Mannual
 
-To build program create 2 SQL Databases in: https://www.microsoft.com/en-us/download/details.aspx?id=42299 <br />
+To build program create 2 SQL Databases Instances in: https://www.microsoft.com/en-us/download/details.aspx?id=42299 <br />
 and config sql server with: 
-https://aka.ms/ssmsfullsetup <br />
+https://aka.ms/ssmsfullsetup <br /> <br />
+
+- (local)\UserDatabase <br />
+- (local)\PostsDatabase <br />
+
+<br />
+CREATE 2 DATABASES: <br /><br />
+
+- UserRepository <br />
+- PostsRepository <br/ >
 <br />
 In PostsRepository create table named Posts with 4 columns:<br /><br />
 
